@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
+        <name>Identicon</name>
+        <id>identicon</id>
+        <author>iionly (for Elgg 1.9), Justin Richer</author>
+        <version>1.9.1</version>
+        <category>enhancement</category>
+        <description>Identicon profile icons instead of Elgg default grey heads.</description>
+        <website>https://github.com/iionly</website>
+        <copyright>(C) iionly 2013, (C) 2010-2013 The MITRE Corporation</copyright>
+        <license>GNU Public License version 2</license>
+        <requires>
+                <type>elgg_release</type>
+                <version>1.9</version>
+        </requires>
+</plugin_manifest>
