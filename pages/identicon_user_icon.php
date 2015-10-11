@@ -4,21 +4,21 @@
  */
 
 $user_guid = get_input('user_guid');
-if($user_guid) {
-    $user = get_entity($user_guid);
+if ($user_guid) {
+	$user = get_entity($user_guid);
 }
 
 // Get the size
 $size = strtolower(get_input('size'));
 if (!in_array($size, array('master', 'large', 'medium', 'small', 'tiny', 'topbar'))) {
-    $size = 'medium';
+	$size = 'medium';
 }
 
 // If user doesn't exist, return default icon
 if (!$user || !($user instanceof ElggUser)) {
-    $url = "_graphics/icons/default/{$size}.png";
-    $url = elgg_normalize_url($url);
-    forward($url);
+	$url = "_graphics/icons/default/{$size}.png";
+	$url = elgg_normalize_url($url);
+	forward($url);
 }
 
 $seed = identicon_seed($user);
@@ -31,19 +31,19 @@ $filehandler->setFilename("identicon/" . $seed . '/' . $size . ".jpg");
 $success = false;
 
 try {
-    if ($filehandler->open("read")) {
-        if ($contents = $filehandler->read($filehandler->getSize())) {
-            $success = true;
-        }
-}
+	if ($filehandler->open("read")) {
+		if ($contents = $filehandler->read($filehandler->getSize())) {
+			$success = true;
+		}
+	}
 } catch (InvalidParameterException $e) {
-    elgg_log("Unable to get Identicon for user with GUID $user_guid", 'ERROR');
+	elgg_log("Unable to get Identicon for user with GUID $user_guid", 'ERROR');
 }
 
 if (!$success) {
-    $url = "_graphics/icons/user/default{$size}.gif";
-    $url = elgg_normalize_url($url);
-    forward($url);
+	$url = "_graphics/icons/user/default{$size}.gif";
+	$url = elgg_normalize_url($url);
+	forward($url);
 }
 
 header("Content-type: image/jpeg", true);

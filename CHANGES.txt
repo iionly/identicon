@@ -1,0 +1,24 @@
+Changelog
+=========
+
+1.9.2
+-----
+
+- Added check on plugin activation if the GD php extension functions imageantialias() and imagerotate() are available. If not, the Identicon plugin isn't activated as the resulting Identicon images would look bad anyway,
+- composer.json added.
+
+1.9.1
+-----
+
+- Updated for Elgg 1.9.
+
+1.8.1
+-----
+
+- Code cleanup,
+- Made the Removal button on the avatar edit page working both with regular user avatars and identicon images (not showing the button in the latter case).
+
+1.8.0
+-----
+
+- Initial release for Elgg 1.8.
