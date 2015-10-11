@@ -4,7 +4,7 @@
  *
  */
 
-$group_guid = get_input('group_guid');
+$group_guid = elgg_extract('group_guid', $vars);
 
 /** @var ElggGroup $group */
 $group = get_entity($group_guid);
@@ -20,7 +20,7 @@ if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']
 	exit;
 }
 
-$size = strtolower(get_input('size'));
+$size = strtolower(elgg_extract('size', $vars));
 if (!in_array($size, array('large', 'medium', 'small', 'tiny', 'master'))) {
 	$size = "medium";
 }
@@ -39,14 +39,15 @@ if ($filehandler->open("read")) {
 }
 
 if (!$success) {
-	$location = elgg_get_plugins_path() . "groups/graphics/default{$size}.gif";
-	$contents = @file_get_contents($location);
+	$contents = elgg_view("groups/default{$size}.gif");
+	header("Content-type: image/gif");
+} else {
+	header("Content-type: image/jpeg");
 }
 
-header("Content-type: image/jpeg");
-header('Expires: ' . date('r',time() + 864000));
+header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', strtotime("+10 days")), true);
 header("Pragma: public");
 header("Cache-Control: public");
 header("Content-Length: " . strlen($contents));
-header("ETag: $etag");
+header("ETag: \"$etag\"");
 echo $contents;

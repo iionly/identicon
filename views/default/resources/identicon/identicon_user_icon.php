@@ -3,22 +3,20 @@
  * View Identicon user icon
  */
 
-$user_guid = get_input('user_guid');
+$user_guid = elgg_extract('user_guid', $vars);
 if ($user_guid) {
 	$user = get_entity($user_guid);
 }
 
 // Get the size
-$size = strtolower(get_input('size'));
+$size = strtolower(elgg_extract('size', $vars));
 if (!in_array($size, array('master', 'large', 'medium', 'small', 'tiny', 'topbar'))) {
 	$size = 'medium';
 }
 
 // If user doesn't exist, return default icon
 if (!$user || !($user instanceof ElggUser)) {
-	$url = "_graphics/icons/default/{$size}.png";
-	$url = elgg_normalize_url($url);
-	forward($url);
+	forward(elgg_get_simplecache_url("icons/default/{$size}.png"));
 }
 
 $seed = identicon_seed($user);
@@ -41,9 +39,7 @@ try {
 }
 
 if (!$success) {
-	$url = "_graphics/icons/user/default{$size}.gif";
-	$url = elgg_normalize_url($url);
-	forward($url);
+	forward(elgg_get_simplecache_url("icons/user/default{$size}.gif"));
 }
 
 header("Content-type: image/jpeg", true);

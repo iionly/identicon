@@ -43,18 +43,17 @@ function identicon_page_handler($page) {
 		return false;
 	}
 
-	$base = elgg_get_plugins_path() . 'identicon/pages';
-
+	$resource_vars = array();
 	switch ($page[0]) {
 		case "identicon_user_icon": // user identicon
-			set_input('user_guid', $page[1]);
-			set_input('size', elgg_extract(2, $page, 'medium'));
-			require "$base/identicon_user_icon.php";
+			$resource_vars['user_guid'] = elgg_extract(1, $page);
+			$resource_vars['size'] = elgg_extract(2, $page, 'medium');
+			echo elgg_view_resource('identicon/identicon_user_icon', $resource_vars);
 			break;
 		case "identicon_group_icon": // group identicon
-			set_input('group_guid', $page[1]);
-			set_input('size', elgg_extract(2, $page, 'medium'));
-			require "$base/identicon_group_icon.php";
+			$resource_vars['group_guid'] = elgg_extract(1, $page);
+			$resource_vars['size'] = elgg_extract(2, $page, 'medium');
+			echo elgg_view_resource('identicon/identicon_group_icon', $resource_vars);
 			break;
 		default:
 			return false;
