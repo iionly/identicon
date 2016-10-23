@@ -632,7 +632,7 @@ function identicon_seed($entity) {
  */
 function identicon_check($entity) {
 	//make sure the image functions are available before trying to make avatars
-	if (function_exists(imagecreatetruecolor)) {
+	if (function_exists("imagecreatetruecolor")) {
 		// entity is group, user or something else?
 		if ($entity instanceof ElggGroup) {
 			$file = new ElggFile();
