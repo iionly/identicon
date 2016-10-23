@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.0.1
+-----
+
+- Fixed: check of availability of imagecreatetruecolor() function.
+
 2.0.0
 -----
 

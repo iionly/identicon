@@ -1,8 +1,8 @@
 Identicon plugin for Elgg 2.X
 =============================
 
-Latest Version: 2.0.0  
-Released: 2015-10-11  
+Latest Version: 2.0.1  
+Released: 2016-10-23  
 Contact: iionly@gmx.de  
 License: GNU General Public License version 2  
 Copyright: (c) iionly 2013, (C) Justin Richer, The MITRE Corporation 2009
