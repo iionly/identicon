@@ -20,7 +20,7 @@ if (!empty($vars["entity"])) {
 	$form = elgg_view('input/form', array('action' =>  elgg_get_site_url() . "action/identicon/grouppreference?group_guid=$group_guid", 'body' => $img . "\n" . $check . "\n<br>" . $submit));
 
 	$identicon_title = elgg_echo('identicon:title');
-	$identicon_explanation = elgg_echo('identicon:explanation');
+	$identicon_explanation = elgg_echo('identicon:group_explanation');
 
 $output = <<<HTML
 <div id="identicon-editgroupicon" class="elgg-divide-top mtl ptm">
