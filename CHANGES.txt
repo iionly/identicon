@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.9.4
+-----
+
+- Fixed: correction of language string key in activate.php (thanks to tritol),
+- Fixed: correction of language string key used on group settings pages (thanks to tritol),
+- Czech translation added (thanks to tritol).
+
 1.9.3
 -----
 
