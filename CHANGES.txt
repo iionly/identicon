@@ -1,6 +1,14 @@
 Changelog
 =========
 
+2.3.2
+-----
+
+- Fixed: correction of language string key in activate.php (thanks to tritol),
+- Fixed: correction of language string key used on group settings pages (thanks to tritol),
+- Fixed: no longer use deprecated 'icon_sizes' config values but elgg_get_icon_sizes() instead,
+- Czech translation added (thanks to tritol).
+
 2.0.1
 -----
 

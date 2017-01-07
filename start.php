@@ -452,7 +452,7 @@ function identicon_build($seed, $file) {
 	$file->close();
 	imagedestroy($resized);
 
-	$icon_sizes = elgg_get_config('icon_sizes');
+	$icon_sizes = elgg_get_icon_sizes('user');
 
 	$topbar = get_resized_image_from_existing_file($filename, $icon_sizes['topbar']['w'], $icon_sizes['topbar']['h'], $icon_sizes['topbar']['square']);
 	$tiny = get_resized_image_from_existing_file($filename, $icon_sizes['tiny']['w'], $icon_sizes['tiny']['h'], $icon_sizes['tiny']['square']);
@@ -578,7 +578,7 @@ function identicon_build_group($seedbase, $file) {
 	$file->close();
 	imagedestroy($grid);
 
-	$icon_sizes = elgg_get_config('icon_sizes');
+	$icon_sizes = elgg_get_icon_sizes('user');
 
 	$tiny = get_resized_image_from_existing_file($filename, $icon_sizes['tiny']['w'], $icon_sizes['tiny']['h'], $icon_sizes['tiny']['square']);
 	$small = get_resized_image_from_existing_file($filename, $icon_sizes['small']['w'], $icon_sizes['small']['h'], $icon_sizes['small']['square']);

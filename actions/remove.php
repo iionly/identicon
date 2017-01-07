@@ -13,10 +13,10 @@ if (!$user || !$user->canEdit()) {
 	forward(REFERER);
 }
 
+$icon_sizes = elgg_get_icon_sizes('user');
 if ($user->preferIdenticon) {
 	$user->preferIdenticon = false;
 	// Delete all identicons from diskspace
-	$icon_sizes = elgg_get_config('icon_sizes');
 	$seed = identicon_seed($user);
 	foreach ($icon_sizes as $name => $size_info) {
 		$file = new ElggFile();
@@ -28,7 +28,6 @@ if ($user->preferIdenticon) {
 	unset($user->icontime);
 } else {
 	// Delete all icons from diskspace
-	$icon_sizes = elgg_get_config('icon_sizes');
 	foreach ($icon_sizes as $name => $size_info) {
 		$file = new ElggFile();
 		$file->owner_guid = $user_guid;
