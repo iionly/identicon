@@ -21,45 +21,8 @@ function identicon_init() {
 	elgg_extend_view('core/avatar/upload', 'identicon/editusericon');
 	elgg_extend_view('groups/edit', 'identicon/editgroupicon');
 
-	// Register a page handler so we can have nice URLs
-	elgg_register_page_handler('identicon', 'identicon_page_handler');
-
-	elgg_register_action('identicon/userpreference', elgg_get_plugins_path() . 'identicon/actions/userpreference.php', 'logged_in');
-	elgg_register_action('identicon/grouppreference', elgg_get_plugins_path() . 'identicon/actions/grouppreference.php', 'logged_in');
-	elgg_register_action('identicon/remove', elgg_get_plugins_path() . 'identicon/actions/remove.php', 'logged_in');
-
 	elgg_register_plugin_hook_handler('entity:icon:url', 'user', 'identicon_usericon_hook', 900);
 	elgg_register_plugin_hook_handler('entity:icon:url', 'group', 'identicon_groupicon_hook', 900);
-}
-
-/**
- * Identicon page handler
- *
- * @param array $page Array of url segments
- * @return bool
- */
-function identicon_page_handler($page) {
-	if (!isset($page[0])) {
-		return false;
-	}
-
-	$resource_vars = array();
-	switch ($page[0]) {
-		case "identicon_user_icon": // user identicon
-			$resource_vars['user_guid'] = elgg_extract(1, $page);
-			$resource_vars['size'] = elgg_extract(2, $page, 'medium');
-			echo elgg_view_resource('identicon/identicon_user_icon', $resource_vars);
-			break;
-		case "identicon_group_icon": // group identicon
-			$resource_vars['group_guid'] = elgg_extract(1, $page);
-			$resource_vars['size'] = elgg_extract(2, $page, 'medium');
-			echo elgg_view_resource('identicon/identicon_group_icon', $resource_vars);
-			break;
-		default:
-			return false;
-	}
-
-	return true;
 }
 
 /** generate sprite for corners and sides */
@@ -453,34 +416,40 @@ function identicon_build($seed, $file) {
 	imagedestroy($resized);
 
 	$icon_sizes = elgg_get_icon_sizes('user');
+	
+	$ia = elgg_set_ignore_access(true);
+	
+	$file_new = new ElggFile();
+	$file_new->owner_guid = $file->owner_guid;
+	$file_new->setFilename('identicon/' . $seed . '/topbar.jpg');
+	$file_new->setMimeType('image/jpeg');
+	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['topbar']);
 
-	$topbar = get_resized_image_from_existing_file($filename, $icon_sizes['topbar']['w'], $icon_sizes['topbar']['h'], $icon_sizes['topbar']['square']);
-	$tiny = get_resized_image_from_existing_file($filename, $icon_sizes['tiny']['w'], $icon_sizes['tiny']['h'], $icon_sizes['tiny']['square']);
-	$small = get_resized_image_from_existing_file($filename, $icon_sizes['small']['w'], $icon_sizes['small']['h'], $icon_sizes['small']['square']);
-	$medium = get_resized_image_from_existing_file($filename, $icon_sizes['medium']['w'], $icon_sizes['medium']['h'], $icon_sizes['medium']['square']);
-	$large = get_resized_image_from_existing_file($filename, $icon_sizes['large']['w'], $icon_sizes['large']['h'], $icon_sizes['large']['square']);
+	$file_new = new ElggFile();
+	$file_new->owner_guid = $file->owner_guid;
+	$file_new->setFilename('identicon/' . $seed . '/tiny.jpg');
+	$file_new->setMimeType('image/jpeg');
+	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['tiny']);
 
-	$file->setFilename('identicon/' . $seed . '/large.jpg');
-	$file->open('write');
-	$file->write($large);
-	$file->close();
-	$file->setFilename('identicon/' . $seed . '/medium.jpg');
-	$file->open('write');
-	$file->write($medium);
-	$file->close();
-	$file->setFilename('identicon/' . $seed . '/small.jpg');
-	$file->open('write');
-	$file->write($small);
-	$file->close();
-	$file->setFilename('identicon/' . $seed . '/tiny.jpg');
-	$file->open('write');
-	$file->write($tiny);
-	$file->close();
-	$file->setFilename('identicon/' . $seed . '/topbar.jpg');
-	$file->open('write');
-	$file->write($topbar);
-	$file->close();
-
+	$file_new = new ElggFile();
+	$file_new->owner_guid = $file->owner_guid;
+	$file_new->setFilename('identicon/' . $seed . '/small.jpg');
+	$file_new->setMimeType('image/jpeg');
+	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['small']);
+	
+	$file_new = new ElggFile();
+	$file_new->owner_guid = $file->owner_guid;
+	$file_new->setFilename('identicon/' . $seed . '/medium.jpg');
+	$file_new->setMimeType('image/jpeg');
+	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['medium']);
+	
+	$file_new = new ElggFile();
+	$file_new->owner_guid = $file->owner_guid;
+	$file_new->setFilename('identicon/' . $seed . '/large.jpg');
+	$file_new->setMimeType('image/jpeg');
+	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['large']);
+	
+	elgg_set_ignore_access($ia);
 	return true;
 }
 
@@ -580,28 +549,33 @@ function identicon_build_group($seedbase, $file) {
 
 	$icon_sizes = elgg_get_icon_sizes('user');
 
-	$tiny = get_resized_image_from_existing_file($filename, $icon_sizes['tiny']['w'], $icon_sizes['tiny']['h'], $icon_sizes['tiny']['square']);
-	$small = get_resized_image_from_existing_file($filename, $icon_sizes['small']['w'], $icon_sizes['small']['h'], $icon_sizes['small']['square']);
-	$medium = get_resized_image_from_existing_file($filename, $icon_sizes['medium']['w'], $icon_sizes['medium']['h'], $icon_sizes['medium']['square']);
-	$large = get_resized_image_from_existing_file($filename, $icon_sizes['large']['w'], $icon_sizes['large']['h'], $icon_sizes['large']['square']);
+	$ia = elgg_set_ignore_access(true);
+	
+	$file_new = new ElggFile();
+	$file_new->owner_guid = $file->owner_guid;
+	$file_new->setFilename('identicon/' . $seedbase . '/tiny.jpg');
+	$file_new->setMimeType('image/jpeg');
+	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['tiny']);
 
-	$file->setFilename('identicon/' . $seedbase . '/large.jpg');
-	$file->open('write');
-	$file->write($large);
-	$file->close();
-	$file->setFilename('identicon/' . $seedbase . '/medium.jpg');
-	$file->open('write');
-	$file->write($medium);
-	$file->close();
-	$file->setFilename('identicon/' . $seedbase . '/small.jpg');
-	$file->open('write');
-	$file->write($small);
-	$file->close();
-	$file->setFilename('identicon/' . $seedbase . '/tiny.jpg');
-	$file->open('write');
-	$file->write($tiny);
-	$file->close();
+	$file_new = new ElggFile();
+	$file_new->owner_guid = $file->owner_guid;
+	$file_new->setFilename('identicon/' . $seedbase . '/small.jpg');
+	$file_new->setMimeType('image/jpeg');
+	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['small']);
 
+	$file_new = new ElggFile();
+	$file_new->owner_guid = $file->owner_guid;
+	$file_new->setFilename('identicon/' . $seedbase . '/medium.jpg');
+	$file_new->setMimeType('image/jpeg');
+	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['medium']);
+
+	$file_new = new ElggFile();
+	$file_new->owner_guid = $file->owner_guid;
+	$file_new->setFilename('identicon/' . $seedbase . '/large.jpg');
+	$file_new->setMimeType('image/jpeg');
+	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['large']);
+	
+	elgg_set_ignore_access($ia);
 	return true;
 }
 
