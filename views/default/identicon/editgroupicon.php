@@ -9,20 +9,20 @@ if (!empty($vars["entity"])) {
 
 	$img = '<img src="' . $wav . '" alt="identicon" />';
 
-	$check = elgg_view('input/checkboxes', array(
+	$check = elgg_view('input/checkboxes', [
 		'name' => 'preferGroupIdenticon',
-		'options' => array(elgg_echo('identicon:group_preference_checkbox') => true),
+		'options' => [elgg_echo('identicon:group_preference_checkbox') => true],
 		'value' => ($group->preferGroupIdenticon ? true : false)
-	));
+	]);
 
-	$submit = elgg_view('input/submit', array('value' => elgg_echo('save')));
+	$submit = elgg_view('input/submit', ['value' => elgg_echo('save')]);
 
-	$form = elgg_view('input/form', array('action' =>  elgg_get_site_url() . "action/identicon/grouppreference?group_guid=$group_guid", 'body' => $img . "\n" . $check . "\n<br>" . $submit));
+	$form = elgg_view('input/form', ['action' =>  elgg_get_site_url() . "action/identicon/grouppreference?group_guid=$group_guid", 'body' => $img . "\n" . $check . "\n<br>" . $submit]);
 
 	$identicon_title = elgg_echo('identicon:title');
 	$identicon_explanation = elgg_echo('identicon:group_explanation');
 
-$output = <<<HTML
+	$output = <<<HTML
 <div id="identicon-editgroupicon" class="elgg-divide-top mtl ptm">
 	<label>$identicon_title</label>
 	<p>

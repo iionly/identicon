@@ -32,80 +32,80 @@ function identicon_getsprite($shape, $R, $G, $B, $rotation, $spriteZ) {
 	$fg = imagecolorallocate($sprite, $R, $G, $B);
 	$bg = imagecolorallocate($sprite, 255, 255, 255);
 	imagefilledrectangle($sprite, 0, 0, $spriteZ, $spriteZ, $bg);
-	switch($shape) {
+	switch ($shape) {
 		case 0: // triangle
-			$shape = array(
+			$shape = [
 				0.5, 1,
 				1, 0,
 				1, 1
-			);
+			];
 			break;
 		case 1: // parallelogram
-			$shape = array(
+			$shape = [
 				0.5, 0,
 				1, 0,
 				0.5, 1,
 				0, 1
-			);
+			];
 			break;
 		case 2: // mouse ears
-			$shape = array(
+			$shape = [
 				0.5, 0,
 				1, 0,
 				1, 1,
 				0.5, 1,
 				1, 0.5
-			);
+			];
 			break;
 		case 3: // ribbon
-			$shape = array(
+			$shape = [
 				0, 0.5,
 				0.5, 0,
 				1, 0.5,
 				0.5, 1,
 				0.5, 0.5
-			);
+			];
 			break;
 		case 4: // sails
-			$shape = array(
+			$shape = [
 				0, 0.5,
 				1, 0,
 				1, 1,
 				0, 1,
 				1, 0.5
-			);
+			];
 			break;
 		case 5: // fins
-			$shape = array(
+			$shape = [
 				1, 0,
 				1, 1,
 				0.5, 1,
 				1, 0.5,
 				0.5, 0.5
-			);
+			];
 			break;
 		case 6: // beak
-			$shape = array(
+			$shape = [
 				0, 0,
 				1, 0,
 				1, 0.5,
 				0, 0,
 				0.5, 1,
 				0, 1
-			);
+			];
 			break;
 		case 7: // chevron
-			$shape = array(
+			$shape = [
 				0, 0,
 				0.5, 0,
 				1, 0.5,
 				0.5, 1,
 				0, 1,
 				0.5, 0.5
-			);
+			];
 			break;
 		case 8: // fish
-			$shape = array(
+			$shape = [
 				0.5, 0,
 				0.5, 0.5,
 				1, 0.5,
@@ -113,10 +113,10 @@ function identicon_getsprite($shape, $R, $G, $B, $rotation, $spriteZ) {
 				0.5, 1,
 				0.5, 0.5,
 				0, 0.5
-			);
+			];
 			break;
 		case 9: // kite
-			$shape = array(
+			$shape = [
 				0, 0,
 				1, 0,
 				0.5, 0.5,
@@ -124,10 +124,10 @@ function identicon_getsprite($shape, $R, $G, $B, $rotation, $spriteZ) {
 				0.5, 1,
 				0.5, 0.5,
 				0, 1
-			);
+			];
 			break;
 		case 10: // trough
-			$shape = array(
+			$shape = [
 				0, 0.5,
 				0.5, 1,
 				1, 0.5,
@@ -135,10 +135,10 @@ function identicon_getsprite($shape, $R, $G, $B, $rotation, $spriteZ) {
 				1, 0,
 				1, 1,
 				0, 1
-			);
+			];
 			break;
 		case 11: // rays
-			$shape = array(
+			$shape = [
 				0.5, 0,
 				1, 0,
 				1, 1,
@@ -146,10 +146,10 @@ function identicon_getsprite($shape, $R, $G, $B, $rotation, $spriteZ) {
 				1, 0.75,
 				0.5, 0.5,
 				1, 0.25
-			);
+			];
 			break;
 		case 12: // double rhombus
-			$shape = array(
+			$shape = [
 				0, 0.5,
 				0.5, 0,
 				0.5, 0.5,
@@ -158,10 +158,10 @@ function identicon_getsprite($shape, $R, $G, $B, $rotation, $spriteZ) {
 				0.5, 1,
 				0.5, 0.5,
 				0, 1
-			);
+			];
 			break;
 		case 13: // crown
-			$shape = array(
+			$shape = [
 				0, 0,
 				1, 0,
 				1, 1,
@@ -171,10 +171,10 @@ function identicon_getsprite($shape, $R, $G, $B, $rotation, $spriteZ) {
 				0.5, 0.75,
 				0, 0.5,
 				0.5, 0.25
-			);
+			];
 			break;
 		case 14: // radioactive
-			$shape = array(
+			$shape = [
 				0, 0.5,
 				0.5, 0.5,
 				0.5, 0,
@@ -184,10 +184,10 @@ function identicon_getsprite($shape, $R, $G, $B, $rotation, $spriteZ) {
 				0.5, 1,
 				0.5, 0.5,
 				0, 1
-			);
+			];
 			break;
 		default: // tiles
-			$shape = array(
+			$shape = [
 				0, 0,
 				1, 0,
 				0.5, 0.5,
@@ -197,7 +197,7 @@ function identicon_getsprite($shape, $R, $G, $B, $rotation, $spriteZ) {
 				0.5, 1,
 				0.5, 0.5,
 				0, 1
-			);
+			];
 			break;
 	}
 
@@ -226,28 +226,28 @@ function identicon_getcenter($shape, $fR, $fG, $fB, $bR, $bG, $bB, $usebg, $spri
 		$bg = imagecolorallocate($sprite, 255, 255, 255);
 	}
 	imagefilledrectangle($sprite, 0, 0, $spriteZ, $spriteZ, $bg);
-	switch($shape) {
+	switch ($shape) {
 		case 0: // empty
-			$shape = array();
+			$shape = [];
 			break;
 		case 1: // fill
-			$shape = array(
+			$shape = [
 				0, 0,
 				1, 0,
 				1, 1,
 				0, 1
-			);
+			];
 			break;
 		case 2: // diamond
-			$shape = array(
+			$shape = [
 				0.5, 0,
 				1, 0.5,
 				0.5, 1,
 				0, 0.5
-			);
+			];
 			break;
 		case 3: // reverse diamond
-			$shape = array(
+			$shape = [
 				0, 0,
 				1, 0,
 				1, 1,
@@ -257,10 +257,10 @@ function identicon_getcenter($shape, $fR, $fG, $fB, $bR, $bG, $bB, $usebg, $spri
 				1, 0.5,
 				0.5, 0,
 				0, 0.5
-			);
+			];
 			break;
 		case 4: // cross
-			$shape = array(
+			$shape = [
 				0.25, 0,
 				0.75, 0,
 				0.5, 0.5,
@@ -273,10 +273,10 @@ function identicon_getcenter($shape, $fR, $fG, $fB, $bR, $bG, $bB, $usebg, $spri
 				0, 0.75,
 				0, 0.25,
 				0.5, 0.5
-			);
+			];
 			break;
 		case 5: // morning star
-			$shape = array(
+			$shape = [
 				0, 0,
 				0.5, 0.25,
 				1, 0,
@@ -285,18 +285,18 @@ function identicon_getcenter($shape, $fR, $fG, $fB, $bR, $bG, $bB, $usebg, $spri
 				0.5, 0.75,
 				0, 1,
 				0.25, 0.5
-			);
+			];
 			break;
 		case 6: // small square
-			$shape = array(
+			$shape = [
 				0.33, 0.33,
 				0.67, 0.33,
 				0.67, 0.67,
 				0.33, 0.67
-			);
+			];
 			break;
 		case 7: // checkerboard
-			$shape = array(
+			$shape = [
 				0, 0,
 				0.33, 0,
 				0.33, 0.33,
@@ -317,7 +317,7 @@ function identicon_getcenter($shape, $fR, $fG, $fB, $bR, $bG, $bB, $usebg, $spri
 				0.33, 0.67,
 				0.33, 0.33,
 				0, 0.33
-			);
+			];
 			break;
 	}
 	/** apply ratios */
@@ -362,7 +362,7 @@ function identicon_build($seed, $file) {
 	imageantialias($identicon, true);
 
 	/** assign white as background */
-    $bg = imagecolorallocate($identicon, 255, 255, 255);
+	$bg = imagecolorallocate($identicon, 255, 255, 255);
 	imagefilledrectangle($identicon, 0, 0, $spriteZ, $spriteZ, $bg);
 
 	/** generate corner sprites */
@@ -409,7 +409,7 @@ function identicon_build($seed, $file) {
 	imagecolortransparent($resized, $bg);
 
 	/** and finally, save */
-    $filename = $file->getFilenameOnFilestore();
+	$filename = $file->getFilenameOnFilestore();
 	$file->open('write');
 	imagejpeg($resized, $filename);
 	$file->close();
@@ -658,14 +658,14 @@ function identicon_check($entity) {
 /**
  * This hooks into the getIcon API
  *
- * @param unknown_type $hook
- * @param unknown_type $entity_type
- * @param unknown_type $returnvalue
- * @param unknown_type $params
  * @return unknown
  */
-function identicon_usericon_hook($hook, $entity_type, $returnvalue, $params) {
-	if (($hook == 'entity:icon:url') && ($params['entity'] instanceof ElggUser)) {
+function identicon_usericon_hook(\Elgg\Hook $hook) {
+	$hook_name = $hook->getName();
+	$returnvalue = $hook->getValue();
+	$params = $hook->getParams();
+		
+	if (($hook_name == 'entity:icon:url') && ($params['entity'] instanceof ElggUser)) {
 		$ent = $params['entity'];
 		// if we don't have an icon or the user just prefers the avatar
 		if ($ent->preferIdenticon || !($ent->icontime)) {
@@ -676,8 +676,12 @@ function identicon_usericon_hook($hook, $entity_type, $returnvalue, $params) {
 	}
 }
 
-function identicon_groupicon_hook($hook, $entity_type, $returnvalue, $params) {
-	if (($hook == 'entity:icon:url') && ($params['entity'] instanceof ElggGroup)) {
+function identicon_groupicon_hook(\Elgg\Hook $hook) {
+	$hook_name = $hook->getName();
+	$returnvalue = $hook->getValue();
+	$params = $hook->getParams();
+	
+	if (($hook_name == 'entity:icon:url') && ($params['entity'] instanceof ElggGroup)) {
 		$ent = $params['entity'];
 		// if we don't have an icon or the user just prefers the avatar
 		if ($ent->preferGroupIdenticon || !($ent->icontime)) {

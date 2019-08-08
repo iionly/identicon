@@ -21,7 +21,7 @@ if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']
 }
 
 $size = strtolower(elgg_extract('size', $vars));
-if (!in_array($size, array('large', 'medium', 'small', 'tiny', 'master'))) {
+if (!in_array($size, ['large', 'medium', 'small', 'tiny', 'master'])) {
 	$size = "medium";
 }
 
