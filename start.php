@@ -332,6 +332,8 @@ function identicon_getcenter($shape, $fR, $fG, $fB, $bR, $bG, $bB, $usebg, $spri
 
 /** Builds the avatar. */
 function identicon_build($seed, $file) {
+
+	elgg_call(ELGG_IGNORE_ACCESS, function() use ($seed, $file) {
 	/** parse hash string */
 	$csh = hexdec(substr($seed, 0, 1)); // corner sprite shape
 	$ssh = hexdec(substr($seed, 1, 1)); // side sprite shape
@@ -417,8 +419,6 @@ function identicon_build($seed, $file) {
 
 	$icon_sizes = elgg_get_icon_sizes('user');
 	
-	$ia = elgg_set_ignore_access(true);
-	
 	$file_new = new ElggFile();
 	$file_new->owner_guid = $file->owner_guid;
 	$file_new->setFilename('identicon/' . $seed . '/topbar.jpg');
@@ -449,11 +449,15 @@ function identicon_build($seed, $file) {
 	$file_new->setMimeType('image/jpeg');
 	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['large']);
 	
-	elgg_set_ignore_access($ia);
+	});
+	
 	return true;
 }
 
 function identicon_build_group($seedbase, $file) {
+	
+	elgg_call(ELGG_IGNORE_ACCESS, function() use ($seedbase, $file) {
+		
 	$size = 200;
 
 	$grid = imagecreatetruecolor($size * 2, $size * 2);
@@ -549,8 +553,6 @@ function identicon_build_group($seedbase, $file) {
 
 	$icon_sizes = elgg_get_icon_sizes('user');
 
-	$ia = elgg_set_ignore_access(true);
-	
 	$file_new = new ElggFile();
 	$file_new->owner_guid = $file->owner_guid;
 	$file_new->setFilename('identicon/' . $seedbase . '/tiny.jpg');
@@ -575,7 +577,7 @@ function identicon_build_group($seedbase, $file) {
 	$file_new->setMimeType('image/jpeg');
 	elgg_save_resized_image($filename, $file_new->getFilenameOnFilestore(), $icon_sizes['large']);
 	
-	elgg_set_ignore_access($ia);
+	});
 	return true;
 }
 
