@@ -1,6 +1,8 @@
 <?php
+require_once __DIR__ . "/lib/functions.php";
 
 return [
+	'bootstrap' => Identicon::class,
 	'actions' => [
 		'identicon/userpreference' => [],
 		'identicon/grouppreference' => [],

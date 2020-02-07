@@ -1,30 +1,4 @@
 <?php
-
-/**
- * Elgg Identicon plugin.
- *
- *
- * @author Justin Richer
- * @copyright The MITRE Corporation 2009
- * @link http://mitre.org/
- *
- * updated for Elgg 1.8 and newer by iionly
- * (c) iionly
- * iionly@gmx.de
- * https://github.com/iionly
- *
- */
-
-elgg_register_event_handler('init', 'system', 'identicon_init');
-
-function identicon_init() {
-	elgg_extend_view('core/avatar/upload', 'identicon/editusericon');
-	elgg_extend_view('groups/edit', 'identicon/editgroupicon');
-
-	elgg_register_plugin_hook_handler('entity:icon:url', 'user', 'identicon_usericon_hook', 900);
-	elgg_register_plugin_hook_handler('entity:icon:url', 'group', 'identicon_groupicon_hook', 900);
-}
-
 /** generate sprite for corners and sides */
 function identicon_getsprite($shape, $R, $G, $B, $rotation, $spriteZ) {
 	$sprite = imagecreatetruecolor($spriteZ, $spriteZ);
