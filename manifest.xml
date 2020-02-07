@@ -3,7 +3,7 @@
 	<name>Identicon</name>
 	<id>identicon</id>
 	<author>iionly (for Elgg 1.8 and newer), Justin Richer, Rohit Gupta</author>
-	<version>3.0.0</version>
+	<version>3.1.0</version>
 	<category>enhancement</category>
 	<description>Identicon profile icons instead of Elgg default grey heads.</description>
 	<website>https://github.com/iionly</website>
