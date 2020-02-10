@@ -1,10 +1,10 @@
 <?php
 
-$user_guid = (int)get_input('user_guid');
+$user_guid = (int) get_input('user_guid');
 $user = get_entity($user_guid);
 
 $pref = get_input('preferIdenticon', false);
-if (is_array($pref)){
+if (is_array($pref)) {
 	$pref = $pref[0];
 }
 

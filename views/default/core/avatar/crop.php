@@ -11,7 +11,6 @@
 $user = $vars['entity'];
 
 if (!($user->preferIdenticon)) {
-
 ?>
 
 <div id="avatar-croppingtool" class="mtl ptm">
@@ -20,7 +19,7 @@ if (!($user->preferIdenticon)) {
 	<p>
 		<?php echo elgg_echo("avatar:create:instructions"); ?>
 	</p>
-	<?php echo elgg_view_form('avatar/crop', array(), $vars); ?>
+	<?php echo elgg_view_form('avatar/crop', [], $vars); ?>
 </div>
 
 <?php

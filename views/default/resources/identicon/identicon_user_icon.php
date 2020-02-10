@@ -10,7 +10,7 @@ if ($user_guid) {
 
 // Get the size
 $size = strtolower(elgg_extract('size', $vars));
-if (!in_array($size, array('master', 'large', 'medium', 'small', 'tiny', 'topbar'))) {
+if (!in_array($size, ['master', 'large', 'medium', 'small', 'tiny', 'topbar'])) {
 	$size = 'medium';
 }
 

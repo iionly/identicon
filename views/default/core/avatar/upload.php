@@ -13,26 +13,25 @@ $user = $vars['entity'];
 if ($user->preferIdenticon) {
 	echo "<p>" . elgg_echo("identicon:avatar_upload_disabled") . "</p>";
 } else {
-
-	$user_avatar = elgg_view('output/img', array(
+	$user_avatar = elgg_view('output/img', [
 		'src' => $user->getIconUrl('medium'),
 		'alt' => elgg_echo('avatar')
-	));
+	]);
 
 	$current_label = elgg_echo('avatar:current');
 
 	$remove_button = '';
 	if ($user->icontime) {
-		$remove_button = elgg_view('output/url', array(
+		$remove_button = elgg_view('output/url', [
 			'text' => elgg_echo('remove'),
 			'title' => elgg_echo('avatar:remove'),
 			'href' => 'action/identicon/remove?guid=' . elgg_get_page_owner_guid(),
 			'is_action' => true,
 			'class' => 'elgg-button elgg-button-cancel mtm'
-		));
+		]);
 	}
 
-	$form_params = array('enctype' => 'multipart/form-data');
+	$form_params = ['enctype' => 'multipart/form-data'];
 	$upload_form = elgg_view_form('avatar/upload', $form_params, $vars);
 
 ?>

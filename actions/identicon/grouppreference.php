@@ -6,7 +6,7 @@ if ($group_guid) {
 	$group = get_entity($group_guid);
 
 	$pref = get_input('preferGroupIdenticon', false);
-	if (is_array($pref)){
+	if (is_array($pref)) {
 		$pref = $pref[0];
 	}
 
